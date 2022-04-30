@@ -23,22 +23,29 @@
 	<h1>About this app</h1>
 
 	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
+		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app template by
+		<a href="https://aidantilgner.dev" target="_blank">Aidan Tilgner</a>. You can make it your own
+		by running the following commands:
 	</p>
-
-	<pre>npm init svelte</pre>
+	<pre><code>npm install</code></pre>
+	<pre><code
+			>npm run dev <span style="cursor:pointer;font-weight: 600;" title="These flags are optional"
+				>-- --open</span
+			></code
+		></pre>
 
 	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		This template is a standard SvelteKit app with the addition of the following libraries and
+		dependencies:
 	</p>
-
-	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
+	<ul>
+		<li>
+			<pre style="display:inline;">Sass</pre>
+			: A preprocessing library that converts
+			<pre style="display:inline;">.scss/.sass</pre>
+			files to css at buildtime.
+		</li>
+	</ul>
 </div>
 
 <style>

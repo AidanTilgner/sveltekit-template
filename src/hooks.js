@@ -1,5 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { v4 as uuid } from '@lukeed/uuid';
-
 import * as cookie from 'cookie';
 
 /** @type {import('@sveltejs/kit').Handle} */
