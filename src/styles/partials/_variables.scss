@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
+
+// * FONTS
 $font-mono: 'Fira Mono', monospace;
+$font-primary: 'Libre Baskerville', serif;
+$font-secondary: 'Roboto Flex', sans-serif;
+
+// * COLOR
 $pure-white: #ffffff;
-$primary-color: #b9c6d2;
-$secondary-color: #d0dde9;
-$tertiary-color: #edf0f8;
-$accent-color: #ff3e00;
+$primary-color: #ffffff;
+$secondary-color: #242424;
+$tertiary-color: #2256f2;
+$accent-color: #242424;
 $heading-color: rgba(0, 0, 0, 0.7);
-$text-color: #444444;
+$text-color: #242424;
 $background-without-opacity: rgba(255, 255, 255, 0.7);
+
+// * SPACING
 $column-width: 42rem;
 $column-margin-top: 4rem;

@@ -1,0 +1,19 @@
+@use './variables' as *;
+
+// * LAYOUT
+@mixin desktop {
+	@media (min-width: 1280px) {
+		@content;
+	}
+}
+
+// * STYLING
+@mixin default-padding {
+	padding-inline-start: 14px;
+	padding-inline-end: 14px;
+
+	@include desktop {
+		padding-inline-start: 100px;
+		padding-inline-end: 100px;
+	}
+}

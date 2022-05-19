@@ -1,105 +1,138 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+
+	let menuOpen = false;
+	let pg;
+
+	page.subscribe((page) => {
+		pg = page;
+	});
 </script>
 
-<header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
-
-	<nav>
-		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
-			</li>
-		</ul>
-	</nav>
-
-	<div class="corner">
-		<!-- TODO put something else here? github link? -->
-	</div>
+<header class="header">
+	<p class="title">Dane's Site</p>
+	{#if !menuOpen}
+		<i
+			class="material-icons menubar"
+			on:click={(e) => {
+				menuOpen = true;
+			}}>menu</i
+		>
+	{/if}
+	<div class="nav-items" />
+	{#if menuOpen}
+		<div class="nav-overlay">
+			<i
+				class="material-icons closeicon"
+				on:click={(e) => {
+					menuOpen = false;
+				}}>close</i
+			>
+			<ul class="nav-items">
+				<li class="nav-item">
+					<a
+						class:active={$page.url.pathname === '/'}
+						sveltekit:prefetch
+						class="nav-item__link"
+						href="/">Home</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class:active={$page.url.pathname === '/conversations'}
+						class="nav-item__link"
+						sveltekit:prefetch
+						href="/conversations">Conversations</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class:active={$page.url.pathname === '/polls'}
+						class="nav-item__link"
+						sveltekit:prefetch
+						href="/polls">Polls</a
+					>
+				</li>
+			</ul>
+		</div>
+	{/if}
 </header>
 
-<style>
+<style lang="scss">
+	@use '../../styles/partials/variables' as *;
+	@use '../../styles/partials/mixins' as *;
+
 	header {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		background-color: white;
-	}
+		height: 56px;
+		box-shadow: 0.2px 0.2px 10px 0 rgba($color: #000000, $alpha: 0.25);
 
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
+		@include default-padding;
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
+		.title {
+			font-family: $font-primary;
+			font-size: 20px;
+		}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
+		.menubar {
+			font-size: 24px;
+			cursor: pointer;
+		}
 
-	nav {
-		display: flex;
-		justify-content: center;
-	}
+		.nav-items {
+			display: none;
 
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
+			@include desktop {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
 
-	li {
-		position: relative;
-		height: 100%;
-	}
+		.nav-overlay {
+			height: 100vh;
+			width: 100vw;
+			background-color: rgba($color: #000000, $alpha: 0.65);
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
 
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
+			.nav-items {
+				font-size: 24px;
+				list-style-type: none;
+				position: fixed;
+				top: 25vh;
+				right: 14px;
+				text-align: right;
+			}
 
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
+			.nav-item {
+				font-family: $font-primary;
+				margin-bottom: 36px;
 
-	a:hover {
-		color: var(--accent-color);
+				&__link {
+					color: white;
+					text-decoration: none;
+				}
+			}
+
+			.nav-item .active {
+				text-decoration: underline;
+			}
+		}
+
+		.closeicon {
+			position: fixed;
+			top: 14px;
+			right: 14px;
+			font-size: 24px;
+			color: white;
+			cursor: pointer;
+		}
 	}
 </style>
