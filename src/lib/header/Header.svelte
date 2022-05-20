@@ -19,7 +19,32 @@
 			}}>menu</i
 		>
 	{/if}
-	<div class="nav-items" />
+	<div class="nav-items">
+		<p class="nav-items__nav-item">
+			<a
+				class:active={$page.url.pathname === '/'}
+				sveltekit:prefetch
+				class="nav-items__nav-item__link"
+				href="/">Home</a
+			>
+		</p>
+		<p class="nav-items__nav-item">
+			<a
+				class:active={$page.url.pathname === '/conversations'}
+				class="nav-items__nav-item__link"
+				sveltekit:prefetch
+				href="/conversations">Conversations</a
+			>
+		</p>
+		<p class="nav-items__nav-item">
+			<a
+				class:active={$page.url.pathname === '/polls'}
+				class="nav-items__nav-item__link"
+				sveltekit:prefetch
+				href="/polls">Polls</a
+			>
+		</p>
+	</div>
 	{#if menuOpen}
 		<div class="nav-overlay">
 			<i
@@ -28,27 +53,27 @@
 					menuOpen = false;
 				}}>close</i
 			>
-			<ul class="nav-items">
-				<li class="nav-item">
+			<ul class="nav-list">
+				<li class="nav-list-item">
 					<a
 						class:active={$page.url.pathname === '/'}
 						sveltekit:prefetch
-						class="nav-item__link"
+						class="nav-list-item__link"
 						href="/">Home</a
 					>
 				</li>
-				<li class="nav-item">
+				<li class="nav-list-item">
 					<a
 						class:active={$page.url.pathname === '/conversations'}
-						class="nav-item__link"
+						class="nav-list-item__link"
 						sveltekit:prefetch
 						href="/conversations">Conversations</a
 					>
 				</li>
-				<li class="nav-item">
+				<li class="nav-list-item">
 					<a
 						class:active={$page.url.pathname === '/polls'}
-						class="nav-item__link"
+						class="nav-list-item__link"
 						sveltekit:prefetch
 						href="/polls">Polls</a
 					>
@@ -80,15 +105,9 @@
 		.menubar {
 			font-size: 24px;
 			cursor: pointer;
-		}
-
-		.nav-items {
-			display: none;
 
 			@include desktop {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
+				display: none;
 			}
 		}
 
@@ -102,7 +121,7 @@
 			left: 0;
 			right: 0;
 
-			.nav-items {
+			.nav-list {
 				font-size: 24px;
 				list-style-type: none;
 				position: fixed;
@@ -111,18 +130,18 @@
 				text-align: right;
 			}
 
-			.nav-item {
+			.nav-list-item {
 				font-family: $font-primary;
 				margin-bottom: 36px;
+
+				.active {
+					text-decoration: underline;
+				}
 
 				&__link {
 					color: white;
 					text-decoration: none;
 				}
-			}
-
-			.nav-item .active {
-				text-decoration: underline;
 			}
 		}
 
@@ -133,6 +152,29 @@
 			font-size: 24px;
 			color: white;
 			cursor: pointer;
+		}
+
+		.nav-items {
+			display: none;
+			font-family: $font-secondary;
+
+			@include desktop {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			&__nav-item {
+				margin-left: 24px;
+				.active {
+					text-decoration: underline;
+					font-weight: 600;
+				}
+				&__link {
+					color: $text-color;
+					text-decoration: none;
+				}
+			}
 		}
 	}
 </style>
